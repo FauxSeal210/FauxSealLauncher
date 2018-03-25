@@ -22,11 +22,13 @@
         <Button x:Name="Start" Content="Start" HorizontalAlignment="Left" Margin="11,83,0,0" VerticalAlignment="Top" Width="85" IsEnabled="False" Click="Start_Click"/>
         <Button x:Name="LoGin" Content="Login" HorizontalAlignment="Left" Margin="285,11,0,0" VerticalAlignment="Top" Width="98" Height="70" Click="Button_Click"/>
         <Label Content="Made by FauxSeal210 (로스트사가: ExtraTerrestrial)" HorizontalAlignment="Left" Margin="96,87,0,0" VerticalAlignment="Top" Width="315" Height="28"/>
-        <RadioButton x:Name="Nexon" Content="Nexon" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="63"/>
-        <RadioButton x:Name="Naver" Content="Naver" HorizontalAlignment="Left" Margin="92,120,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="Daum" Content="Daum" HorizontalAlignment="Left" Margin="170,120,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Favorite" Content="기본 서버로 등록" HorizontalAlignment="Left" Margin="263,120,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="Nexon" Content="넥슨" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" Width="48"/>
+        <RadioButton x:Name="Naver" Content="네이버" HorizontalAlignment="Left" Margin="53,120,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="Daum" Content="다음" HorizontalAlignment="Left" Margin="119,120,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Favorite" Content="이 서버 기억" HorizontalAlignment="Left" Margin="304,120,0,0" VerticalAlignment="Top" Width="107"/>
         <Button Content="런쳐 바로가기 생성" HorizontalAlignment="Left" Margin="203,143,0,0" VerticalAlignment="Top" Width="190" Height="26" Click="Button_Click_1"/>
         <Button Content="런쳐 소스 구경하기" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="188" Height="26" Click="Button_Click_2"/>
+        <RadioButton x:Name="MGame" Content="엠게임" HorizontalAlignment="Left" Margin="172,120,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="HanGame" Content="한게임" HorizontalAlignment="Left" Margin="238,120,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -36,6 +36,14 @@ namespace FauxSealLauncher
                 {
                     Nexon.IsChecked = true;
                 }
+                else if (server.Equals("mgame"))
+                {
+                    MGame.IsChecked = true;
+                }
+                else if (server.Equals("hangame"))
+                {
+                    HanGame.IsChecked = true;
+                }
             }
             this.KeyDown += new KeyEventHandler(Key_Down);
             MessageBox.Show("제작자 : FauxSeal210 (로스트사가 타임게이트)", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -70,6 +78,14 @@ namespace FauxSealLauncher
             {
                 core = new Daum(webControl);
             }
+            else if (MGame.IsChecked.Value)
+            {
+                core = new MGame(webControl);
+            }
+            else if (HanGame.IsChecked.Value)
+            {
+                core = new HanGame(webControl);
+            }
 
             if (core == null)
             {
@@ -88,6 +104,8 @@ namespace FauxSealLauncher
                 Naver.IsEnabled = false;
                 Daum.IsEnabled = false;
                 Nexon.IsEnabled = false;
+                MGame.IsEnabled = false;
+                HanGame.IsEnabled = false;
                 Start.IsEnabled = true;
                 Favorite.IsEnabled = false;
                 MessageBox.Show("로그인에 성공하였습니다.", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -108,6 +126,14 @@ namespace FauxSealLauncher
             else if (Daum.IsChecked.Value)
             {
                 core = new Daum(webControl);
+            }
+            else if (MGame.IsChecked.Value)
+            {
+                core = new MGame(webControl);
+            }
+            else if (HanGame.IsChecked.Value)
+            {
+                core = new HanGame(webControl);
             }
             core.StartGame();
         }

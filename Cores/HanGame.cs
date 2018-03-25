@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using Awesomium.Windows.Controls;
 using Awesomium.Core;
 using System.Threading;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace FauxSealLauncher.Cores
 {
-    public class Nexon : Core
+    public class HanGame : Core
     {
-        string loginURI = "https://nxlogin.nexon.com/common/login.aspx?redirect=http%3a%2f%2flostsaga.nexon.com";
-        string mainURI = "http://lostsaga.nexon.com/main/main.asp";
-        string playURI = "http://lostsaga.nexon.com/play/playUrl.asp";
+        string mainURI = "http://lostsaga.hangame.com/main/main.asp";
+        string loginURI = "https://id.hangame.com/wlogin.nhn?popup=false&adult=false&nxtURL=http%3A//lostsaga.hangame.com/main/main.asp";
+        string playURI = "http://lostsaga.hangame.com/play/playUrl.asp";
 
         string id, pw;
 
         Action callback = null;
 
-        public Nexon(WebControl webControl) : base(webControl)
+        public HanGame(WebControl webControl) : base(webControl)
         {
             webControl.DocumentReady -= onFinishLoading;
             webControl.DocumentReady += onFinishLoading;
@@ -26,7 +25,7 @@ namespace FauxSealLauncher.Cores
 
         public override string GetServer()
         {
-            return "nexon";
+            return "hangame";
         }
 
         public override void LogIn(string id, string pw, Action action)
@@ -47,11 +46,11 @@ namespace FauxSealLauncher.Cores
             if (e.OriginalString.Equals(loginURI))
             {
                 Thread.Sleep(1000);
-                webControl.ExecuteJavascript(string.Format("$(\"{0}\").val(\"{1}\");", "#txtNexonID", id));
-                webControl.ExecuteJavascript(string.Format("$(\"{0}\").val(\"{1}\");", "#txtPWD", pw));
-                webControl.ExecuteJavascript(string.Format("$(\"{0}\").click();", "#btnLogin", id));
+                webControl.ExecuteJavascript(string.Format("document.getElementById(\"{0}\").value = \"{1}\"", "turtle2", id));
+                webControl.ExecuteJavascript(string.Format("document.getElementById(\"{0}\").value = \"{1}\"", "earthworm2", pw));
+                webControl.ExecuteJavascript(string.Format("document.getElementById(\"{0}\").click();", "btnLoginImg"));
             }
-            else if (Regex.Match(e.OriginalString, @"http://lostsaga.nexon.com/intro/\d+/\d+_intro.asp").Success)
+            else if (Regex.Match(e.OriginalString, @"http://lostsaga.hangame.com/intro/\d+/\d+_intro.asp").Success)
             {
                 callback.Invoke();
             }
