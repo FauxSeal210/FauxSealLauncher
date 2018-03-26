@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Awesomium.Windows.Controls;
 using Awesomium.Core;
-using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -20,8 +18,8 @@ namespace FauxSealLauncher.Cores
 
         public Nexon(WebControl webControl) : base(webControl)
         {
-            webControl.DocumentReady -= onFinishLoading;
-            webControl.DocumentReady += onFinishLoading;
+            webControl.LoadingFrameComplete += onFinishLoading;
+            webControl.LoadingFrameComplete -= onFinishLoading;
         }
 
         public override string GetServer()
@@ -46,7 +44,6 @@ namespace FauxSealLauncher.Cores
         {
             if (e.OriginalString.Equals(loginURI))
             {
-                Thread.Sleep(1000);
                 webControl.ExecuteJavascript(string.Format("$(\"{0}\").val(\"{1}\");", "#txtNexonID", id));
                 webControl.ExecuteJavascript(string.Format("$(\"{0}\").val(\"{1}\");", "#txtPWD", pw));
                 webControl.ExecuteJavascript(string.Format("$(\"{0}\").click();", "#btnLogin", id));
@@ -57,19 +54,17 @@ namespace FauxSealLauncher.Cores
             }
             else if (e.OriginalString.Equals(mainURI))
             {
-                Thread.Sleep(1000);
                 webControl.ExecuteJavascript("GameStart();");
             }
             else if (e.OriginalString.Equals(playURI))
             {
-                Thread.Sleep(1500);
                 if (webControl.IsDocumentReady)
                 {
                     string launchURI = webControl.ExecuteJavascriptWithResult(string.Format("$(\"{0}\").attr(\"{1}\");", "#playgame", "href"));
                     try
                     {
                         Process.Start(launchURI);
-                        webControl.DocumentReady -= onFinishLoading;
+                        webControl.LoadingFrameComplete -= onFinishLoading;
                     }
                     catch (Exception)
                     {
@@ -77,5 +72,6 @@ namespace FauxSealLauncher.Cores
                 }
             }
         }
+
     }
 }

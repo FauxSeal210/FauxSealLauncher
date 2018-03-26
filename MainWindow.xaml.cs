@@ -149,6 +149,12 @@ namespace FauxSealLauncher
             System.Diagnostics.Process.Start("https://github.com/FauxSeal210/FauxSealLauncher");
         }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            LauncherWindow.Height = 604.75;
+            LauncherWindow.Width = 446.319;
+        }
+
         private void CreateShortcut()
         {
             string link = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + Path.DirectorySeparatorChar + "로스트사가 런쳐.lnk";
@@ -163,6 +169,6 @@ namespace FauxSealLauncher
         {
             string path = Directory.GetCurrentDirectory();
             System.IO.File.WriteAllText(path + "\\server.txt", server);
-        }        
+        }
     }
 }

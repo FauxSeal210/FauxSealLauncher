@@ -1,4 +1,4 @@
-﻿<Window x:Class="FauxSealLauncher.MainWindow"
+﻿<Window x:Name="LauncherWindow" x:Class="FauxSealLauncher.MainWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -14,9 +14,9 @@
         xmlns:local="clr-namespace:FauxSealLauncher"
         xmlns:osm="http://schemas.awesomium.com/winfx"
         mc:Ignorable="d"
-        Title="로스트사가 런쳐" Height="204.277" Width="425.044" ResizeMode="CanMinimize" Loaded="Window_Loaded">
+        Title="로스트사가 런쳐" Height="231.81" Width="425.044" ResizeMode="CanMinimize" Loaded="Window_Loaded">
     <Grid HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="598" Margin="10,0,0,-19">
-        <osm:WebControl x:Name="webControl" Margin="402,28,146,319" Visibility="Hidden" />
+        <osm:WebControl x:Name="webControl" Margin="11,213,205,-168" />
         <TextBox x:Name="ID" HorizontalAlignment="Left" Height="26" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" materialDesign:HintAssist.Hint="ID"/>
         <PasswordBox x:Name="PW" HorizontalAlignment="Left" Margin="11,53,0,0" VerticalAlignment="Top" Width="250" materialDesign:HintAssist.Hint="PW"/>
         <Button x:Name="Start" Content="Start" HorizontalAlignment="Left" Margin="11,83,0,0" VerticalAlignment="Top" Width="85" IsEnabled="False" Click="Start_Click"/>
@@ -30,5 +30,6 @@
         <Button Content="런쳐 소스 구경하기" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="188" Height="26" Click="Button_Click_2"/>
         <RadioButton x:Name="MGame" Content="엠게임" HorizontalAlignment="Left" Margin="172,120,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="HanGame" Content="한게임" HorizontalAlignment="Left" Margin="238,120,0,0" VerticalAlignment="Top"/>
+        <Button Content="디버그 모드" HorizontalAlignment="Left" Margin="11,174,0,0" VerticalAlignment="Top" Width="382" Height="24" Click="Button_Click_3"/>
     </Grid>
 </Window>

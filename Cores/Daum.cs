@@ -1,7 +1,6 @@
 ﻿using System;
 using Awesomium.Windows.Controls;
 using Awesomium.Core;
-using System.Threading;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
@@ -19,8 +18,8 @@ namespace FauxSealLauncher.Cores
 
         public Daum(WebControl webControl) : base(webControl)
         {
-            webControl.DocumentReady -= onFinishLoading;
-            webControl.DocumentReady += onFinishLoading;
+            webControl.LoadingFrameComplete -= onFinishLoading;
+            webControl.LoadingFrameComplete += onFinishLoading;
         }
 
         public override string GetServer()
@@ -45,7 +44,6 @@ namespace FauxSealLauncher.Cores
         {
             if (e.OriginalString.Equals(loginURI))
             {
-                Thread.Sleep(1500);
                 webControl.ExecuteJavascript(string.Format("$(\"{0}\").val(\"{1}\");", "#id", id));
                 webControl.ExecuteJavascript(string.Format("$(\"{0}\").val(\"{1}\");", "#inputPwd", pw));
                 webControl.ExecuteJavascript(string.Format("$(\"{0}\").click();", "#loginBtn"));
@@ -56,7 +54,6 @@ namespace FauxSealLauncher.Cores
             }
             else if (e.OriginalString.Equals("http://game.daum.net/bridge/?url=http%3A%2F%2Flostsaga.game.daum.net%2Fmain%2Fmain.asp"))
             {
-                Thread.Sleep(1000);
                 webControl.ExecuteJavascript(string.Format("location.href = \"{0}\";", playURI));
             }
             else if (e.OriginalString.Equals(playURI))
@@ -65,7 +62,7 @@ namespace FauxSealLauncher.Cores
                 try
                 {
                     Process.Start(launchURI);
-                    webControl.DocumentReady -= onFinishLoading;
+                    webControl.LoadingFrameComplete -= onFinishLoading;
                 }
                 catch (Exception)
                 {

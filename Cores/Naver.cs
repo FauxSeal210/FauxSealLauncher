@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Awesomium.Windows.Controls;
 using Awesomium.Core;
-using System.Threading;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
@@ -23,8 +18,8 @@ namespace FauxSealLauncher.Cores
 
         public Naver(WebControl webControl) : base(webControl)
         {
-            webControl.DocumentReady -= onFinishLoading;
-            webControl.DocumentReady += onFinishLoading;
+            webControl.LoadingFrameComplete -= onFinishLoading;
+            webControl.LoadingFrameComplete += onFinishLoading;
         }
 
         public override string GetServer()
@@ -49,19 +44,16 @@ namespace FauxSealLauncher.Cores
         {
             if (e.OriginalString.Equals(loginURI))
             {
-                Thread.Sleep(1000);
                 webControl.ExecuteJavascript(string.Format("document.getElementById(\"{0}\").value = \"{1}\"", "id", id));
                 webControl.ExecuteJavascript(string.Format("document.getElementById(\"{0}\").value = \"{1}\"", "pw", pw));
                 webControl.ExecuteJavascript(string.Format("document.getElementsByClassName(\"{0}\")[0].click();", "btn_global"));
             }
-            //http://game.naver.com/game/mirror.nhn?gurl=http%3A%2F%2Flostsaga.playnetwork.co.kr%2Fintro%2F2018%2F20180321_intro.asp&gameId=P_LOSA
             else if (Regex.Match(e.OriginalString, @"http://lostsaga.playnetwork.co.kr/intro/\d+/\d+_intro.asp").Success)
             {
                 callback.Invoke();
             }
             else if (e.OriginalString.Equals("http://game.naver.com/game/mirror.nhn?gurl=http%3A%2F%2Flostsaga.playnetwork.co.kr%2Fmain%2Fmain.asp&gameId=P_LOSA"))
             {
-                Thread.Sleep(1000);
                 webControl.ExecuteJavascript(string.Format("location.href = \"{0}\";", playURI));
             }
             else if (e.OriginalString.Equals(playURI))
@@ -70,7 +62,7 @@ namespace FauxSealLauncher.Cores
                 try
                 {
                     Process.Start(launchURI);
-                    webControl.DocumentReady -= onFinishLoading;
+                    webControl.LoadingFrameComplete -= onFinishLoading;
                 }
                 catch (Exception)
                 {
